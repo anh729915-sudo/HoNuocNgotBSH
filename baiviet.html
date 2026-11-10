@@ -33,11 +33,12 @@
   body.dark-mode .bai-footer { background: linear-gradient(135deg, #131f1d, #0a1211); border-color: var(--vien); border-top-color: var(--nuoc); }
   body.dark-mode .share-btn.copy { background: var(--suong-2); color: var(--chu); }
   body.dark-mode .share-btn.copy:hover { background: var(--chu-nhat); color: #fff;}
-  
-  /* Đảo màu chữ ký cho Dark Mode */
   body.dark-mode .bai-footer-sign { mix-blend-mode: screen; filter: invert(1) contrast(1.2); }
+  body.dark-mode .binh-luan-item { background: rgba(255,255,255,0.03); border-color: var(--vien); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  
   body { font-family: "Be Vietnam Pro", sans-serif; color: var(--chu); background: var(--suong); line-height: 1.8; font-size: 16px; transition: background-color 0.4s, color 0.4s; }
   
   /* THANH TIẾN TRÌNH ĐỌC BÀI (READING PROGRESS) */
@@ -93,6 +94,65 @@
   .btn-like:hover { background: #e0245e; color: #fff; border-color: #e0245e; transform: scale(1.05); }
   .btn-like.da-thich { background: #e0245e; color: #fff; pointer-events: none; border-color: #e0245e; }
 
+  /* ================= KHU VỰC BÌNH LUẬN ================= */
+  .binh-luan-section { margin-top: 40px; }
+  .binh-luan-section h3 { font-size: 1.5rem; color: var(--chu); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: "Be Vietnam Pro", sans-serif; }
+  .binh-luan-section h3::before { content: "💬"; }
+  
+  .ds-binh-luan { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; max-height: 500px; overflow-y: auto; padding-right: 5px; }
+  
+  .binh-luan-item { background: var(--suong); padding: 15px 20px; border-radius: 12px; border: 1px solid var(--vien); }
+  .bl-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .bl-left { display: flex; flex-direction: column; gap: 2px; }
+  .bl-ten { font-weight: 700; color: var(--nuoc); font-size: 0.95rem; }
+  .bl-thoi-gian { font-size: 0.8rem; color: var(--chu-nhat); }
+  .bl-noidung { font-size: 1rem; color: var(--chu); line-height: 1.6; word-break: break-word; margin-top: 5px; }
+
+  /* Nút xóa bình luận (Chỉ admin thấy) */
+  .btn-xoa-bl {
+    background: rgba(217, 83, 79, 0.1); color: #d9534f; border: 1px solid rgba(217, 83, 79, 0.2);
+    padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600;
+    transition: all 0.2s; display: flex; align-items: center; gap: 4px;
+  }
+  .btn-xoa-bl:hover { background: #d9534f; color: #fff; border-color: #d9534f; }
+
+  .comment-input-box { display: flex; flex-direction: column; gap: 15px; }
+  .comment-input-box .user-info { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: var(--chu-nhat); margin-bottom: 5px; }
+  .comment-input-box .user-info strong { color: var(--chu); font-weight: 600; }
+  .btn-doi-ten { background: none; border: none; color: var(--sen); font-weight: 600; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+  .comment-input-box textarea {
+    width: 100%; min-height: 100px; padding: 15px; border: 1.5px solid var(--vien);
+    border-radius: var(--bo-goc); font-family: inherit; font-size: 1rem; color: var(--chu);
+    background: var(--trang); outline: none; transition: all 0.3s; resize: vertical;
+  }
+  .comment-input-box textarea:focus { border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(79,209,197,0.15); }
+  .comment-input-box .nut { background: linear-gradient(135deg, var(--nuoc), var(--sau)); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; align-self: flex-end; transition: 0.3s; }
+  .comment-input-box .nut:hover { transform: translateY(-2px); box-shadow: var(--bong-nhe); }
+
+  /* ================= MODAL NHẬP TÊN ================= */
+  .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8,30,32,0.7); backdrop-filter: blur(8px); z-index: 10001; display: flex; justify-content: center; align-items: center; }
+  
+  @keyframes slideUpOpen {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes slideUpClose {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(-100px) scale(0.9); }
+  }
+
+  .modal-box { background: var(--trang); padding: 40px; border-radius: var(--bo-goc); width: 100%; max-width: 400px; position: relative; box-shadow: var(--bong-nhe); animation: slideUpOpen 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards; text-align: center; }
+  
+  .modal-overlay.closing .modal-box { animation: slideUpClose 0.4s cubic-bezier(0.4, 0, 1, 1) forwards; }
+  .modal-overlay.closing { opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+
+  .modal-box h3 { color: var(--chu); font-size: 1.5rem; margin-bottom: 10px; font-family: "Be Vietnam Pro", sans-serif;}
+  .modal-box p { color: var(--chu-nhat); font-size: 0.95rem; margin-bottom: 20px; }
+  .modal-box input { width: 100%; padding: 14px; margin-bottom: 20px; border: 1.5px solid var(--vien); border-radius: 8px; outline: none; font-family: inherit; background: var(--suong); color: var(--chu); font-size: 1rem;}
+  .modal-box input:focus { border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(79,209,197,0.15); }
+  .modal-box .nut { background: linear-gradient(135deg, var(--nuoc), var(--sau)); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; font-size: 1rem;}
+  .modal-box .nut:hover { transform: translateY(-2px); box-shadow: var(--bong-nhe); }
+
   /* CHÂN BÀI VIẾT (BẢN QUYỀN) */
   .bai-footer { margin-top: 50px; padding: 40px; background: linear-gradient(135deg, #ffffff, #f0f6f4); border-radius: var(--bo-goc); box-shadow: var(--bong-nhe); border: 1px solid var(--vien); border-top: 5px solid var(--nuoc); display: flex; flex-direction: column; transition: background 0.4s; }
   .bai-footer-text { font-size: 0.9rem; font-weight: 700; color: var(--chu-nhat); text-transform: uppercase; letter-spacing: 1.5px; text-align: center; line-height: 1.6; margin-bottom: 24px; }
@@ -109,6 +169,7 @@
   #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-150px); background: var(--trang); color: var(--chu); padding: 14px 24px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; z-index: 10000; transition: all 0.4s; border-left: 6px solid #ccc; min-width: 250px; }
   #toast.show { transform: translateX(-50%) translateY(0); }
   #toast.success { border-left-color: #5cb85c; }
+  #toast.error { border-left-color: #d9534f; }
 
   @media (max-width: 768px) {
     .bai-bao { padding: 30px 20px; border-radius: 0; border: none; box-shadow: none; margin-top: -20px;}
@@ -123,6 +184,7 @@
     .share-btns { width: 100%; justify-content: space-between; }
     .share-btn { flex: 1; justify-content: center; padding: 10px; }
     .btn-like { width: 100%; justify-content: center; }
+    .modal-box { padding: 30px 20px; width: 90%; }
   }
 </style>
 </head>
@@ -133,6 +195,16 @@
 
 <!-- POPUP THÔNG BÁO -->
 <div id="toast"><span id="toast-icon">✅</span><span id="toast-message">Thông báo!</span></div>
+
+<!-- MODAL NHẬP TÊN BÌNH LUẬN -->
+<div id="modal-ten" class="modal-overlay" hidden>
+  <div class="modal-box">
+    <h3>Nhập tên của bạn</h3>
+    <p>Vui lòng cho mọi người biết bạn là ai trước khi bình luận nhé!</p>
+    <input type="text" id="input-ten" placeholder="Tên của bạn..." maxlength="30">
+    <button onclick="luuTen()" class="nut">Xác nhận</button>
+  </div>
+</div>
 
 <nav>
   <div class="khung-nav">
@@ -175,6 +247,23 @@
       </button>
     </div>
 
+    <!-- KHU VỰC BÌNH LUẬN -->
+    <div class="binh-luan-section">
+      <h3>Bình luận</h3>
+      <div id="ds-binh-luan" class="ds-binh-luan">
+        <p style="text-align: center; color: var(--chu-nhat); font-size: 0.9rem;">Đang tải bình luận...</p>
+      </div>
+      
+      <div class="comment-input-box">
+        <div class="user-info">
+          <span>Bạn đang bình luận với tên: <strong id="hien-thi-ten">Khách</strong></span>
+          <button class="btn-doi-ten" id="btn-doi-ten" onclick="doiTen()" hidden>Đổi tên</button>
+        </div>
+        <textarea id="noidung-binh-luan" placeholder="Chia sẻ cảm nghĩ của bạn về bài viết này..."></textarea>
+        <button onclick="guiBinhLuan()" class="nut">Gửi bình luận</button>
+      </div>
+    </div>
+
     <!-- Chân bài viết -->
     <div class="bai-footer">
       <div class="bai-footer-text">Sản phẩm thuộc bản quyền của tác giả và những người hỗ trợ</div>
@@ -193,7 +282,8 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  // Thêm deleteDoc để xử lý xóa bình luận
+  import { getFirestore, doc, getDoc, updateDoc, increment, collection, addDoc, query, orderBy, getDocs, serverTimestamp, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyABSM2hGSNR-EH1OWOv2pzbE8b81QHPr4",
@@ -209,6 +299,9 @@
 
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get('id');
+
+  // Kiểm tra quyền Admin từ localStorage (được lưu từ trang index)
+  const isAdmin = localStorage.getItem('honuocngot_admin_status') === 'true';
 
   // ================= DARK MODE LOGIC =================
   const darkModeKey = "honuocngot_darkmode";
@@ -261,11 +354,9 @@
         
         document.getElementById('noidung-chinh').innerHTML = data.noidung;
         
-        // Xử lý lượt thích
         const soLike = data.likes || 0;
         document.getElementById('so-like').innerText = soLike;
         
-        // Kiểm tra xem đã like chưa (dùng localStorage)
         if(localStorage.getItem('liked_' + postId)) {
             const btn = document.getElementById('btn-like');
             btn.classList.add('da-thich');
@@ -274,6 +365,9 @@
         
         document.getElementById('loading').hidden = true;
         document.getElementById('noidung-bai').hidden = false;
+        
+        taiBinhLuan();
+        capNhatTrangThaiTen();
         
       } else {
         document.getElementById('loading').hidden = true;
@@ -301,11 +395,7 @@
 
   window.copyLink = function() {
     navigator.clipboard.writeText(window.location.href).then(() => {
-      const toast = document.getElementById('toast');
-      const msg = document.getElementById('toast-message');
-      msg.innerText = "Đã sao chép liên kết bài viết!";
-      toast.className = 'show success'; 
-      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+      hienThiThongBao("Đã sao chép liên kết bài viết!", "success");
     }).catch(err => {
       alert("Trình duyệt không hỗ trợ copy tự động!");
     });
@@ -314,34 +404,185 @@
   // ================= HÀM THẢ TIM (LIKE) =================
   window.thaLik = async function() {
     if (!postId) return;
-    
-    // Kiểm tra nếu đã like rồi thì không cho like nữa
-    if (localStorage.getItem('liked_' + postId)) {
-        return; 
-    }
+    if (localStorage.getItem('liked_' + postId)) return; 
 
     const btn = document.getElementById('btn-like');
     const currentLike = parseInt(document.getElementById('so-like').innerText);
     
-    // Cập nhật giao diện lập tức (Optimistic UI)
     btn.classList.add('da-thich');
     btn.innerHTML = `❤️ Đã thích (<span id="so-like">${currentLike + 1}</span>)`;
-    localStorage.setItem('liked_' + postId, 'true'); // Lưu trạng thái vào máy
+    localStorage.setItem('liked_' + postId, 'true');
 
     try {
       const docRef = doc(db, "baiviet", postId);
-      await updateDoc(docRef, {
-        likes: increment(1) // Tăng lượt thích lên 1 trong Firebase
-      });
+      await updateDoc(docRef, { likes: increment(1) });
     } catch (error) {
       console.error("Lỗi khi lưu lượt thích:", error);
-      // Nếu lỗi, hoàn tác lại giao diện
       btn.classList.remove('da-thich');
       btn.innerHTML = `❤️ Thích (<span id="so-like">${currentLike}</span>)`;
       localStorage.removeItem('liked_' + postId);
       alert("Có lỗi xảy ra khi thả tim. Vui lòng kiểm tra lại quyền Firebase!");
     }
   }
+
+  // ================= XỬ LÝ BÌNH LUẬN =================
+  let commenterName = localStorage.getItem('commenter_name') || '';
+
+  function capNhatTrangThaiTen() {
+    const hienThi = document.getElementById('hien-thi-ten');
+    const btnDoi = document.getElementById('btn-doi-ten');
+    
+    if (commenterName) {
+      hienThi.innerText = commenterName;
+      btnDoi.hidden = false;
+    } else {
+      hienThi.innerText = "Khách (Chưa nhập tên)";
+      btnDoi.hidden = true;
+    }
+  }
+
+  function moModalTen() {
+    const modal = document.getElementById('modal-ten');
+    modal.hidden = false;
+    modal.classList.remove('closing');
+    document.getElementById('input-ten').focus();
+  }
+
+  function dongModalTen() {
+    const modal = document.getElementById('modal-ten');
+    modal.classList.add('closing');
+    setTimeout(() => {
+      modal.hidden = true;
+      modal.classList.remove('closing');
+    }, 400); 
+  }
+
+  window.luuTen = function() {
+    const name = document.getElementById('input-ten').value.trim();
+    if (name) {
+      commenterName = name;
+      localStorage.setItem('commenter_name', name);
+      capNhatTrangThaiTen();
+      dongModalTen(); 
+      hienThiThongBao(`Đã lưu tên: ${name}`, "success");
+    } else {
+      alert("Vui lòng nhập tên của bạn!");
+    }
+  }
+
+  window.doiTen = function() {
+    localStorage.removeItem('commenter_name');
+    commenterName = '';
+    capNhatTrangThaiTen();
+    moModalTen();
+  }
+
+  async function taiBinhLuan() {
+    if (!postId) return;
+    const ds = document.getElementById('ds-binh-luan');
+    try {
+      const q = query(collection(db, "baiviet", postId, "comments"), orderBy("thoiGian", "desc"));
+      const querySnapshot = await getDocs(q);
+      
+      ds.innerHTML = '';
+      if (querySnapshot.empty) {
+        ds.innerHTML = '<p style="text-align: center; color: var(--chu-nhat); font-size: 0.9rem;">Chưa có bình luận nào. Hãy là người đầu tiên!</p>';
+        return;
+      }
+
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const ngay = data.thoiGian ? new Date(data.thoiGian.seconds * 1000).toLocaleDateString('vi-VN', {
+            hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric'
+        }) : 'Vừa xong';
+        
+        // Nếu là Admin thì mới hiển thị nút Xóa
+        const nutXoa = isAdmin ? `<button class="btn-xoa-bl" onclick="window.xoaBinhLuan('${doc.id}')" title="Xóa bình luận">🗑️ Xóa</button>` : '';
+
+        const el = document.createElement('div');
+        el.className = 'binh-luan-item';
+        el.innerHTML = `
+          <div class="bl-header">
+            <div class="bl-left">
+              <span class="bl-ten">${data.ten}</span>
+              <span class="bl-thoi-gian">${ngay}</span>
+            </div>
+            ${nutXoa}
+          </div>
+          <div class="bl-noidung">${data.noidung.replace(/\n/g, '<br>')}</div>
+        `;
+        ds.appendChild(el);
+      });
+    } catch (error) {
+      console.error("Lỗi tải bình luận:", error);
+      ds.innerHTML = '<p style="text-align: center; color: red; font-size: 0.9rem;">Không thể tải bình luận.</p>';
+    }
+  }
+
+  window.guiBinhLuan = async function() {
+    if (!postId) return;
+
+    if (!commenterName) {
+      moModalTen();
+      return;
+    }
+
+    const noidungEl = document.getElementById('noidung-binh-luan');
+    const noidung = noidungEl.value.trim();
+    
+    if (!noidung) {
+      hienThiThongBao("Vui lòng nhập nội dung bình luận!", "error");
+      return;
+    }
+
+    const btn = document.querySelector('.comment-input-box .nut');
+    btn.innerText = "Đang gửi..."; 
+    btn.disabled = true;
+
+    try {
+      await addDoc(collection(db, "baiviet", postId, "comments"), {
+        ten: commenterName,
+        noidung: noidung,
+        thoiGian: serverTimestamp()
+      });
+      
+      noidungEl.value = '';
+      hienThiThongBao("Đã gửi bình luận thành công!", "success");
+      taiBinhLuan();
+      
+    } catch (error) {
+      console.error("Lỗi gửi bình luận:", error);
+      hienThiThongBao("Lỗi gửi bình luận. Hãy kiểm tra lại quyền Firebase!", "error");
+    } finally {
+      btn.innerText = "Gửi bình luận"; 
+      btn.disabled = false;
+    }
+  }
+
+  // ================= HÀM XÓA BÌNH LUẬN (ADMIN) =================
+  window.xoaBinhLuan = async function(id) {
+    if (!isAdmin) return;
+    if (confirm("Bạn có chắc chắn muốn xóa bình luận này không?")) {
+      try {
+        await deleteDoc(doc(db, "baiviet", postId, "comments", id));
+        hienThiThongBao("Đã xóa bình luận thành công!", "success");
+        taiBinhLuan(); 
+      } catch (error) {
+        console.error("Lỗi xóa bình luận:", error);
+        hienThiThongBao("Không thể xóa bình luận. Hãy kiểm tra lại quyền Firebase!", "error");
+      }
+    }
+  }
+
+  window.hienThiThongBao = function(message, type = 'error') {
+    const toast = document.getElementById('toast');
+    const icon = document.getElementById('toast-icon');
+    const msg = document.getElementById('toast-message');
+    msg.innerText = message;
+    toast.className = 'show ' + type; 
+    icon.innerText = type === 'error' ? '❌' : '✅';
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+  };
 </script>
 </body>
 </html>
