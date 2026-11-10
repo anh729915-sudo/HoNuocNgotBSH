@@ -468,8 +468,11 @@
       <div class="gach-chan"></div>
       <p class="mota-lienhe">Hãy gửi thông tin liên hệ cho chúng tôi</p>
       
-      <!-- FORM ĐÃ ĐƯỢC CẬP NHẬT ĐỂ GỬI BẰNG AJAX -->
+      <!-- FORM ĐÃ ĐƯỢC CẬP NHẬT LÊN WEB3FORMS -->
       <form class="form-lienhe" id="formLienHe" onsubmit="return guiLienHe(event)">
+        <input type="hidden" name="subject" value="Có liên hệ mới từ trang web Hồ Nước Ngọt!">
+        <input type="hidden" name="from_name" value="Web Hồ Nước Ngọt">
+        
         <div class="input-group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
           <input type="text" id="hoten" name="Họ và tên" placeholder="Họ và tên" required>
@@ -564,6 +567,9 @@
   
   const STORAGE_KEY = "honuocngot_admin_status"; 
   const USER_KEY = "honuocngot_username";
+  
+  // ĐÃ CẬP NHẬT ACCESS KEY CỦA BẠN
+  const WEB3FORMS_KEY = "ca08ffd2-5b41-49ae-bbc8-1baf1c8e2d5f"; 
 
   let isAdmin = false;
   let currentUser = "";
@@ -756,9 +762,14 @@
     }
   };
 
-  // ================= HÀM GỬI LIÊN HỆ BẰNG AJAX =================
   window.guiLienHe = async function(event) {
     event.preventDefault();
+    
+    if (WEB3FORMS_KEY === "DAN_MA_ACCESS_KEY_CUA_BAN_VAO_DAY") {
+      hienThiThongBao("Chưa cài đặt mã Access Key Web3Forms!", "error");
+      return false;
+    }
+
     const form = event.target;
     const btn = document.getElementById('btnGuiLienHe');
     const originalText = btn.innerText;
@@ -766,25 +777,29 @@
     btn.innerText = "Đang gửi...";
     btn.disabled = true;
 
-    // Lấy dữ liệu từ form
     const formData = new FormData(form);
+    formData.append("access_key", WEB3FORMS_KEY);
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
     try {
-      // Gửi ngầm đến FormSubmit (thêm /ajax/ vào URL để không bị chuyển hướng)
-      const response = await fetch("https://formsubmit.co/ajax/inero406@gmail.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { 
-            'Accept': 'application/json'
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         },
-        body: formData
+        body: json
       });
 
-      if (response.ok) {
-        // Hiển thị thông báo thành công
+      const data = await response.json();
+
+      if (data.success) {
         hienThiThongBao("Đã gửi thông điệp của bạn, chúng tôi sẽ phản hồi sớm nhất có thể!", "success");
-        form.reset(); // Làm trống form
+        form.reset();
       } else {
-        throw new Error("Gửi thất bại");
+        throw new Error(data.message);
       }
     } catch (error) {
       console.error("Lỗi gửi mail:", error);
