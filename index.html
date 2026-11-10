@@ -14,7 +14,7 @@
     --vang: #d4a017; --vang-sang: #f0c14b; --co: #5c7a3a;
     --chu: #1d2b2c; --chu-nhat: #4a6466; --trang: #ffffff;
     --vien: rgba(15, 59, 63, 0.08);
-    --bong-nhe: 0 4px 20px rgba(11, 46, 44, 0.08);
+    --bong-nhe: 0 4px 20px rgba(11, 46, 44, 0.06);
     --bong-vua: 0 12px 40px rgba(11, 46, 44, 0.12);
     --bong-manh: 0 24px 60px rgba(11, 46, 44, 0.18);
     --bo-goc: 16px; --bo-goc-nho: 10px;
@@ -48,41 +48,39 @@
   #backToTop:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(11,46,44,0.45); background: linear-gradient(135deg, var(--nuoc), var(--nuoc-sang)); }
   #backToTop svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2.5; fill: none; }
 
+  /* NAV */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(244,248,245,0.85);
+    background: rgba(255, 255, 255, 0.85);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     backdrop-filter: blur(16px) saturate(140%);
-    border-bottom: 1px solid var(--vien); box-shadow: 0 2px 20px rgba(11,46,44,0.06);
+    border-bottom: 1px solid var(--vien); box-shadow: 0 2px 20px rgba(11,46,44,0.04);
     transition: all 0.3s ease;
   }
-  nav .khung { display: flex; flex-wrap: nowrap; align-items: center; padding-top: 4px; padding-bottom: 4px; position: relative; }
+  nav .khung { display: flex; flex-wrap: nowrap; align-items: center; padding-top: 6px; padding-bottom: 6px; position: relative; }
   .menu-toggle { display: none; background: transparent; border: none; font-size: 1.8rem; color: var(--sau); cursor: pointer; padding: 10px; margin-left: auto; transition: transform 0.2s; }
-  .menu-toggle:active { transform: scale(0.9); }
-  .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; width: 100%; }
+  .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; width: 100%; }
   nav a {
     color: var(--sau); text-decoration: none; font-weight: 500; font-size: 0.94rem;
-    padding: 14px 18px; border-radius: var(--bo-goc-nho); position: relative;
+    padding: 12px 16px; border-radius: var(--bo-goc-nho); position: relative;
     transition: all 0.25s ease; white-space: nowrap; cursor: pointer;
   }
   nav a::after {
-    content: ""; position: absolute; left: 18px; right: 18px; bottom: 8px; height: 2px;
-    background: var(--sen); transform: scaleX(0); transform-origin: left;
+    content: ""; position: absolute; left: 16px; right: 16px; bottom: 6px; height: 2px;
+    background: var(--nuoc); transform: scaleX(0); transform-origin: left;
     transition: transform 0.3s ease; border-radius: 2px;
   }
   nav a:hover, nav a:focus-visible { color: var(--nuoc); outline: none; }
   nav a:hover::after, nav a:focus-visible::after { transform: scaleX(1); }
-  nav a.active-link { color: var(--nuoc); font-weight: 700; }
-  nav a.active-link::after { transform: scaleX(1); background: var(--nuoc); }
   
-  /* NÚT ĐĂNG NHẬP TRÊN MENU */
+  /* NÚT ĐĂNG NHẬP */
   nav a.dangnhap {
-    margin-left: auto; background: linear-gradient(135deg, var(--sen), var(--sen-dam));
-    color: #fff; padding: 10px 22px; border-radius: 999px; font-weight: 600;
-    box-shadow: 0 4px 14px rgba(217,102,138,0.3); transition: all 0.3s;
+    margin-left: auto; background: linear-gradient(135deg, var(--nuoc), var(--sau));
+    color: #fff; padding: 10px 24px; border-radius: 999px; font-weight: 600;
+    box-shadow: 0 4px 14px rgba(31,122,122,0.3); transition: all 0.3s;
   }
   nav a.dangnhap::after { display: none; }
-  nav a.dangnhap:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(217,102,138,0.45); color: #fff; }
+  nav a.dangnhap:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(31,122,122,0.45); color: #fff; }
 
   /* HEADER SLIDER */
   header#trangchu { position: relative; background: var(--sau); color: #fff; overflow: hidden; }
@@ -101,13 +99,13 @@
   .slide.chon img { transform: scale(1) translate3d(0,0,0); }
   #truot::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(0deg, rgba(8,30,32,0.85) 0%, rgba(8,30,32,0.3) 50%, rgba(8,30,32,0.1) 100%);
+    background: linear-gradient(0deg, rgba(8,30,32,0.9) 0%, rgba(8,30,32,0.3) 50%, rgba(8,30,32,0.1) 100%);
     z-index: 1;
   }
   .tieude-bia { position: absolute; left: 0; right: 0; bottom: 0; padding: 80px 24px 60px; z-index: 2; pointer-events: none; }
   .kinh {
     display: inline-block; max-width: 680px; padding: 32px 36px;
-    background: rgba(8,30,32,0.4);
+    background: rgba(8,30,32,0.5);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
     backdrop-filter: blur(20px) saturate(150%);
     border: 1px solid rgba(255,255,255,0.15); border-left: 4px solid var(--vang-sang);
@@ -163,7 +161,7 @@
     cursor: pointer; position: relative;
   }
   .luoi figure:hover { transform: translateY(-8px); box-shadow: var(--bong-vua); }
-  .luoi img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.6s ease; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .luoi img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.6s ease; }
   .luoi figure:hover img { transform: scale(1.08); }
   .luoi figure::after {
     content: "🔍 Xem ảnh"; position: absolute; inset: 0; background: rgba(11,46,44,0.6);
@@ -175,35 +173,38 @@
 
   .video iframe { width: 100%; max-width: 820px; aspect-ratio: 16/9; height: auto; border: 0; border-radius: var(--bo-goc); box-shadow: var(--bong-vua); display: block; margin-top: 24px; }
 
-  /* BÀI VIẾT & FORM ĐĂNG BÀI */
-  .hop { background: var(--suong-2); padding: 28px; border-radius: var(--bo-goc); border: 1px solid var(--vien); margin-bottom: 28px; max-width: 720px; box-shadow: var(--bong-nhe); border-top: 4px solid var(--sen); }
-  .hop h3 { font-size: 1.4rem; color: var(--sau); margin-bottom: 15px; }
-  .hop label { display: block; font-weight: 600; margin: 14px 0 6px; color: var(--sau); font-size: 0.92rem; }
-  .hop input[type="text"] { width: 100%; padding: 12px 16px; border: 1.5px solid #c5d4d0; border-radius: var(--bo-goc-nho); font: inherit; background: #fff; }
+  /* ===== BÀI VIẾT & FORM ĐĂNG BÀI (ĐÃ TỐI ƯU) ===== */
+  .hop { background: var(--trang); padding: 32px; border-radius: var(--bo-goc); border: 1px solid var(--vien); margin-bottom: 32px; max-width: 780px; box-shadow: var(--bong-vua); }
+  .hop h3 { font-size: 1.5rem; color: var(--sau); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .hop h3::before { content: "📝"; }
+  .hop label { display: block; font-weight: 600; margin: 16px 0 8px; color: var(--sau); font-size: 0.95rem; }
+  .hop input[type="text"] { width: 100%; padding: 14px 16px; border: 1.5px solid #e0e6e4; border-radius: var(--bo-goc-nho); font: inherit; background: var(--suong); transition: 0.3s; }
+  .hop input[type="text"]:focus { background: #fff; border-color: var(--nuoc); outline: none; box-shadow: 0 0 0 4px rgba(31,122,122,0.1); }
   
-  .toolbar { display: flex; gap: 6px; background: #fff; padding: 8px; border: 1.5px solid #c5d4d0; border-bottom: none; border-radius: var(--bo-goc-nho) var(--bo-goc-nho) 0 0; flex-wrap: wrap; }
-  .toolbar button { background: transparent; border: 1px solid transparent; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; color: var(--chu); transition: all 0.2s; }
-  .toolbar button:hover { background: var(--suong-2); border-color: #c5d4d0; }
-  .toolbar button.chen-btn { background: var(--nuoc); color: #fff; margin-left: 5px; }
-  .toolbar button.chen-btn:hover { background: var(--nuoc-sang); }
-  .editor { min-height: 200px; background: #fff; border: 1.5px solid #c5d4d0; border-radius: 0 0 var(--bo-goc-nho) var(--bo-goc-nho); padding: 16px; outline: none; line-height: 1.65; max-height: 400px; overflow-y: auto; }
-  .editor:focus { border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(31,122,122,0.15); }
-  .editor img { max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0; display: block; }
+  .toolbar { display: flex; gap: 6px; background: var(--suong); padding: 10px; border: 1.5px solid #e0e6e4; border-bottom: none; border-radius: var(--bo-goc-nho) var(--bo-goc-nho) 0 0; flex-wrap: wrap; }
+  .toolbar button { background: #fff; border: 1px solid #d0d7d5; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--chu); transition: all 0.2s; }
+  .toolbar button:hover { background: var(--nuoc); color: #fff; border-color: var(--nuoc); }
+  .editor { min-height: 250px; background: #fff; border: 1.5px solid #e0e6e4; border-radius: 0 0 var(--bo-goc-nho) var(--bo-goc-nho); padding: 20px; outline: none; line-height: 1.7; max-height: 500px; overflow-y: auto; }
+  .editor:focus { border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(31,122,122,0.1); }
+  .editor img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; display: block; box-shadow: var(--bong-nhe); }
 
-  .nut { padding: 12px 28px; background: linear-gradient(135deg, var(--sau), var(--nuoc)); color: #fff; border: 0; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 14px rgba(11,46,44,0.2); margin-top: 15px;}
+  .nut { padding: 14px 32px; background: linear-gradient(135deg, var(--sau), var(--nuoc)); color: #fff; border: 0; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 14px rgba(11,46,44,0.2); margin-top: 20px;}
   .nut:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(11,46,44,0.3); background: linear-gradient(135deg, var(--nuoc), var(--nuoc-sang)); }
   
-  #dsbai { margin-top: 32px; max-width: 780px; position: relative; padding-left: 28px; }
-  #dsbai::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--nuoc), transparent); border-radius: 2px; }
-  .bai { background: var(--trang); border: 1px solid var(--vien); border-radius: var(--bo-goc); padding: 24px 28px; margin-bottom: 20px; box-shadow: var(--bong-nhe); position: relative; transition: all 0.3s;}
-  .bai:hover { box-shadow: var(--bong-vua); }
-  .bai::before { content: ""; position: absolute; left: -28px; top: 28px; width: 18px; height: 18px; border-radius: 50%; background: var(--trang); border: 3px solid var(--nuoc); box-shadow: 0 0 0 4px var(--suong); }
-  .bai h3 { font-size: 1.35rem; color: var(--nuoc); margin-bottom: 6px; }
-  .bai .meta { font-size: 0.84rem; color: var(--chu-nhat); margin-bottom: 12px; font-weight: 500; }
-  .bai .noidung { color: var(--chu); line-height: 1.7; }
+  /* DANH SÁCH BÀI VIẾT DẠNG CARD */
+  #dsbai { margin-top: 40px; display: grid; gap: 20px; }
+  .bai { background: var(--trang); border: 1px solid var(--vien); border-radius: var(--bo-goc); padding: 30px; box-shadow: var(--bong-nhe); position: relative; transition: all 0.4s ease; display: flex; flex-direction: column; }
+  .bai:hover { transform: translateY(-5px); box-shadow: var(--bong-vua); border-color: rgba(31, 122, 122, 0.3); }
+  .bai h3 { font-size: 1.5rem; color: var(--sau); margin-bottom: 10px; transition: color 0.3s; }
+  .bai:hover h3 { color: var(--nuoc); }
+  .bai .meta { font-size: 0.85rem; color: var(--chu-nhat); margin-bottom: 16px; display: flex; align-items: center; gap: 15px; font-weight: 500; }
+  .bai .meta span { display: flex; align-items: center; gap: 6px; }
+  .bai .noidung { color: var(--chu); line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
+  .bai .doc-tiep { color: var(--nuoc); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; font-size: 0.95rem; transition: gap 0.3s; }
+  .bai:hover .doc-tiep { gap: 10px; }
   
-  .btn-xoa { background: #d9534f; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: 0.3s; white-space: nowrap; }
-  .btn-xoa:hover { background: #c9302c; }
+  .btn-xoa { position: absolute; top: 20px; right: 20px; background: #fff0f0; color: #d9534f; border: 1px solid #ffcccc; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s; z-index: 10;}
+  .btn-xoa:hover { background: #d9534f; color: #fff; border-color: #d9534f; }
 
   /* LIÊN HỆ */
   #lienhe {
@@ -212,72 +213,60 @@
     padding: 100px 24px; display: flex; justify-content: center; align-items: center;
   }
   .lienhe-wrapper {
-    background: rgba(255,255,255,0.75); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.8); border-radius: 32px; padding: 48px; max-width: 680px; width: 100%;
-    box-shadow: 0 20px 40px rgba(11,46,44,0.08), inset 0 1px 0 rgba(255,255,255,1);
-    text-align: center; position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    border: 1px solid #fff; border-radius: 32px; padding: 48px; max-width: 680px; width: 100%;
+    box-shadow: var(--bong-vua); text-align: center;
   }
-  .lienhe-wrapper::before { content: ""; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--nuoc); opacity: 0.1; border-radius: 50%; filter: blur(20px); pointer-events: none; }
-  .tieude-lienhe { font-family: "Be Vietnam Pro", sans-serif; font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--sau), var(--nuoc-sang)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; padding-bottom: 0 !important; text-transform: uppercase; letter-spacing: 2px; display: inline-block; }
-  .tieude-lienhe::before, .tieude-lienhe::after { display: none !important; }
-  .gach-chan { width: 80px; height: 3px; background: linear-gradient(90deg, transparent, var(--nuoc), transparent); margin: 0 auto 20px auto; border-radius: 2px; }
-  .mota-lienhe { text-align: center; color: var(--chu-nhat); margin-bottom: 40px; font-size: 1.05rem; max-width: 100% !important; }
+  .tieude-lienhe { font-family: "Be Vietnam Pro", sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--sau); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; }
+  .gach-chan { width: 80px; height: 3px; background: var(--nuoc); margin: 0 auto 20px auto; border-radius: 2px; }
+  .mota-lienhe { text-align: center; color: var(--chu-nhat); margin-bottom: 40px; font-size: 1.05rem; }
   .form-lienhe { display: flex; flex-direction: column; gap: 20px; text-align: left; }
   .input-group { position: relative; }
   .input-group svg { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; stroke: var(--chu-nhat); transition: stroke 0.3s; pointer-events: none; }
   .form-lienhe input, .form-lienhe textarea {
-    width: 100%; padding: 16px 20px 16px 52px; border: 1.5px solid rgba(15,59,63,0.1);
+    width: 100%; padding: 16px 20px 16px 52px; border: 1.5px solid #e0e6e4;
     border-radius: var(--bo-goc-nho); font-family: inherit; font-size: 1rem; color: var(--chu);
-    background: rgba(255,255,255,0.9); outline: none; transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    background: #fff; outline: none; transition: all 0.3s;
   }
   .form-lienhe textarea { padding-top: 18px; min-height: 160px; resize: vertical; }
   .form-lienhe textarea + svg { top: 24px; transform: none; }
-  .form-lienhe input:focus, .form-lienhe textarea:focus { border-color: var(--nuoc); background: #fff; box-shadow: 0 4px 16px rgba(31,122,122,0.15); transform: translateY(-2px); }
-  .form-lienhe input:focus + svg, .form-lienhe textarea:focus + svg { stroke: var(--nuoc); }
-  .nut-lienhe { background: linear-gradient(135deg, var(--sau), var(--nuoc)); color: white; border: none; padding: 16px 48px; border-radius: var(--bo-goc-nho); font-size: 1.1rem; font-weight: 600; cursor: pointer; align-self: center; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); margin-top: 10px; box-shadow: 0 6px 20px rgba(11,46,44,0.25); position: relative; overflow: hidden; }
-  .nut-lienhe::before { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
-  .nut-lienhe:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(11,46,44,0.35); background: linear-gradient(135deg, var(--nuoc), var(--nuoc-sang)); }
-  .nut-lienhe:hover::before { left: 100%; }
+  .form-lienhe input:focus, .form-lienhe textarea:focus { border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(31,122,122,0.1); }
+  .nut-lienhe { background: linear-gradient(135deg, var(--sau), var(--nuoc)); color: white; border: none; padding: 16px 48px; border-radius: 999px; font-size: 1.1rem; font-weight: 600; cursor: pointer; align-self: center; transition: all 0.4s; margin-top: 10px; box-shadow: 0 6px 20px rgba(11,46,44,0.25); }
+  .nut-lienhe:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(11,46,44,0.35); }
 
   /* TÁC GIẢ */
   .tacgia-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: stretch; margin-top: 32px; }
   .tacgia-chinh { background: linear-gradient(145deg, var(--sau), var(--sau-2)); color: #fff; padding: 40px; border-radius: 24px; box-shadow: var(--bong-vua); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
-  .tacgia-chinh::before { content: ""; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--nuoc-sang); opacity: 0.2; border-radius: 50%; filter: blur(30px); }
-  .tacgia-chinh h3 { font-family: "Be Vietnam Pro", sans-serif; color: var(--vang-sang); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
+  .tacgia-chinh h3 { color: var(--vang-sang); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
   .tacgia-ten { font-family: "Playfair Display", serif; font-size: 2rem; font-weight: 800; line-height: 1.3; margin-bottom: 20px; color: #fff; }
   .tacgia-info { display: flex; flex-direction: column; gap: 12px; font-size: 1rem; }
   .tacgia-info span { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); }
   .tacgia-info strong { color: var(--vang-sang); font-weight: 600; }
   
   .hotro-box { background: var(--trang); padding: 40px; border-radius: 24px; box-shadow: var(--bong-nhe); border: 1px solid var(--vien); display: flex; flex-direction: column; justify-content: center; }
-  .hotro-box h3 { font-family: "Be Vietnam Pro", sans-serif; font-size: 1.1rem; color: var(--sau); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .hotro-box h3 { font-size: 1.1rem; color: var(--sau); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
   .hotro-box h3::before { content: "🤝"; font-size: 1.3rem; }
   .ds-hotro { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-  .nguoi-hotro { background: var(--suong); padding: 12px 18px; border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: var(--chu); display: flex; align-items: center; gap: 10px; border: 1px solid var(--vien); transition: all 0.3s ease; }
-  .nguoi-hotro:hover { background: #fff; border-color: var(--nuoc); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(31,122,122,0.1); }
+  .nguoi-hotro { background: var(--suong); padding: 12px 18px; border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: var(--chu); display: flex; align-items: center; gap: 10px; border: 1px solid var(--vien); transition: all 0.3s; }
+  .nguoi-hotro:hover { background: #fff; border-color: var(--nuoc); transform: translateY(-2px); box-shadow: var(--bong-nhe); }
   .nguoi-hotro::before { content: "•"; color: var(--nuoc); font-weight: bold; font-size: 1.2rem; }
 
-  /* BẢN QUYỀN */
-  .banquyen-wrapper { margin-top: 48px; }
-  .copyright-box { background: linear-gradient(145deg, #ffffff, #f4f8f5); border: 1px dashed rgba(15, 59, 63, 0.2); border-radius: 24px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: var(--bong-nhe); position: relative; overflow: hidden; max-width: 500px; margin: 0 auto; }
-  .copyright-box::before { content: "✦"; position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--vang-sang); opacity: 0.6; }
-  .signature-img { max-width: 100%; width: 220px; height: auto; min-height: 80px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.3) brightness(1.1); margin-bottom: 20px; transition: transform 0.4s ease; border-radius: 8px; }
+  /* BẢN QUYỀN TRANG CHỦ */
+  .copyright-box { background: #fff; border: 1px dashed rgba(15, 59, 63, 0.2); border-radius: 24px; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: var(--bong-nhe); max-width: 500px; margin: 48px auto 0; }
+  .signature-img { max-width: 100%; width: 200px; height: auto; mix-blend-mode: multiply; filter: contrast(1.3) brightness(1.1); margin-bottom: 20px; transition: transform 0.4s ease; }
   .copyright-box:hover .signature-img { transform: scale(1.05) rotate(-2deg); }
   .copyright-text { text-align: center; color: var(--chu-nhat); }
   .copyright-text span { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; font-weight: 600; }
   .copyright-text strong { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--sau); }
 
   footer { background: var(--sau); color: rgba(232,241,238,0.85); padding: 56px 24px 40px; text-align: center; position: relative; overflow: hidden; }
-  footer::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 15% 20%, rgba(47,163,163,0.15), transparent 40%), radial-gradient(circle at 85% 80%, rgba(217,102,138,0.12), transparent 40%); pointer-events: none; }
-  footer > * { position: relative; z-index: 1; }
   footer p { margin: 6px 0; font-size: 0.95rem; }
   footer p:first-child { font-family: "Playfair Display", Georgia, serif; font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
   footer strong { color: var(--vang-sang); }
 
   /* MODAL HÌNH ẢNH */
-  .modal { display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(8,30,32,0.95); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-  .modal-content { margin: auto; display: block; max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.6); animation: zoomIn 0.3s ease; object-fit: contain; }
+  .modal { display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(8,30,32,0.95); backdrop-filter: blur(8px); }
+  .modal-content { margin: auto; display: block; max-width: 90%; max-height: 85vh; border-radius: 12px; animation: zoomIn 0.3s ease; object-fit: contain; }
   @keyframes zoomIn { from {transform:scale(0.85); opacity:0;} to {transform:scale(1); opacity:1;} }
   .close-modal { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.3s, transform 0.3s; }
   .close-modal:hover { color: var(--vang-sang); transform: scale(1.1); }
@@ -297,13 +286,13 @@
   /* MODAL ĐĂNG NHẬP & ĐĂNG XUẤT */
   .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(8,30,32,0.8); backdrop-filter: blur(5px);
+    background: rgba(8,30,32,0.7); backdrop-filter: blur(8px);
     z-index: 10001; display: flex; justify-content: center; align-items: center;
   }
   .modal-box {
     background: var(--trang); padding: 40px; border-radius: var(--bo-goc);
     width: 100%; max-width: 400px; position: relative;
-    box-shadow: var(--bong-vua); animation: zoomIn 0.3s ease;
+    box-shadow: var(--bong-manh); animation: zoomIn 0.3s ease;
   }
   .close-btn {
     position: absolute; top: 15px; right: 20px; font-size: 2rem;
@@ -311,14 +300,14 @@
   }
   .close-btn:hover { color: #d9534f; transform: scale(1.1); }
   .modal-box h3 { text-align: center; margin-bottom: 25px; color: var(--sau); font-size: 1.6rem;}
-  .modal-box label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--sau); font-size: 0.9rem;}
-  .modal-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1.5px solid #c5d4d0; border-radius: 8px; outline: none; font-family: inherit;}
-  .modal-box input:focus { border-color: var(--nuoc); box-shadow: 0 0 0 3px rgba(31,122,122,0.15);}
+  .modal-box label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--sau); font-size: 0.9rem;}
+  .modal-box input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1.5px solid #e0e6e4; border-radius: 8px; outline: none; font-family: inherit; background: var(--suong);}
+  .modal-box input:focus { background: #fff; border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(31,122,122,0.1);}
 
   @media (max-width: 900px) { .tacgia-wrapper { grid-template-columns: 1fr; } }
   @media (max-width: 768px) {
     .menu-toggle { display: block; }
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(244,248,245,0.98); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); flex-direction: column; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-bottom: 1px solid var(--vien); gap: 4px; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-bottom: 1px solid var(--vien); gap: 8px; }
     .nav-links.active { display: flex; animation: slideDown 0.3s ease forwards; }
     @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     nav a { width: 100%; text-align: center; padding: 14px; font-size: 1rem; }
@@ -331,9 +320,7 @@
     .kinh h1 { font-size: 2rem; }
     .kinh p.gioithieu { font-size: 0.95rem; }
     .hop { padding: 22px 18px; }
-    #dsbai { padding-left: 20px; }
     .bai { padding: 20px; }
-    .bai::before { left: -24px; width: 14px; height: 14px; }
     .thongso strong { font-size: 1.8rem; }
     .lienhe-wrapper { padding: 32px 24px; border-radius: 24px; }
     .tieude-lienhe { font-size: 2rem; }
@@ -351,13 +338,8 @@
 </head>
 <body>
 
-<!-- BẢNG POPUP THÔNG BÁO -->
-<div id="toast">
-  <span id="toast-icon">❌</span>
-  <span id="toast-message">Thông báo!</span>
-</div>
+<div id="toast"><span id="toast-icon">❌</span><span id="toast-message">Thông báo!</span></div>
 
-<!-- BẢNG ĐĂNG NHẬP (MODAL) -->
 <div id="modal-dangnhap" class="modal-overlay" hidden>
   <div class="modal-box">
     <span class="close-btn" onclick="dongDangNhap()">&times;</span>
@@ -365,16 +347,13 @@
     <form id="formdn" onsubmit="return dangNhap(event)">
       <label for="tk">Tên đăng nhập</label>
       <input type="text" id="tk" required placeholder="Nhập tên đăng nhập...">
-      
       <label for="mk">Mật khẩu</label>
       <input type="password" id="mk" required placeholder="Nhập mật khẩu...">
-      
       <button type="submit" class="nut" style="width: 100%; margin-top: 10px;">Đăng nhập</button>
     </form>
   </div>
 </div>
 
-<!-- BẢNG XÁC NHẬN ĐĂNG XUẤT (MODAL) -->
 <div id="modal-xacnhan-dangxuat" class="modal-overlay" hidden>
   <div class="modal-box" style="text-align: center; max-width: 350px;">
     <h3 style="margin-bottom: 15px;">Xác nhận đăng xuất</h3>
@@ -470,10 +449,10 @@
 
   <section id="baiviet" class="reveal">
     <div class="khung">
-      <h2>Bài viết</h2>
+      <h2>Bài viết mới nhất</h2>
       
       <form class="hop" id="khungdang" onsubmit="return dangBai(event)" hidden>
-        <h3>Viết bài mới (Dành cho Admin)</h3>
+        <h3>Viết bài mới</h3>
         <label for="tieude">Tiêu đề bài viết</label>
         <input type="text" id="tieude" required placeholder="Nhập tiêu đề...">
         
@@ -482,16 +461,16 @@
           <button type="button" onclick="document.execCommand('bold', false, null)" title="In đậm"><b>B</b></button>
           <button type="button" onclick="document.execCommand('italic', false, null)" title="In nghiêng"><i>I</i></button>
           <button type="button" onclick="document.execCommand('underline', false, null)" title="Gạch chân"><u>U</u></button>
-          <button type="button" class="chen-btn" onclick="document.getElementById('anhInput').click()">🖼️ Chèn Ảnh</button>
+          <button type="button" style="margin-left: auto; background: var(--nuoc); color: #fff; border: none;" onclick="document.getElementById('anhInput').click()">🖼️ Chèn Ảnh</button>
         </div>
         <div id="noidungbai" class="editor" contenteditable="true" placeholder="Nhập nội dung..."></div>
         <input type="file" id="anhInput" accept="image/*" style="display: none;" onchange="chenAnh(this)">
         
-        <button type="submit" class="nut" style="margin-top: 24px;">Đăng bài lên Web ngay</button>
+        <button type="submit" class="nut" style="width: 100%; margin-top: 24px;">Đăng bài lên Web ngay</button>
       </form>
 
       <div id="dsbai">
-        <p style="color: var(--chu-nhat); font-style: italic;">Đang tải bài viết...</p>
+        <p style="color: var(--chu-nhat); font-style: italic; text-align: center; padding: 40px;">Đang tải bài viết...</p>
       </div>
     </div>
   </section>
@@ -548,13 +527,11 @@
         </div>
       </div>
 
-      <div class="banquyen-wrapper">
-        <div class="copyright-box">
-          <img src="chuky.jpg" alt="Chữ ký tác giả Đặng Hồng Anh Khoa" class="signature-img">
-          <div class="copyright-text">
-            <span>Bản quyền &copy; 2026</span>
-            <strong>Đặng Hồng Anh Khoa</strong>
-          </div>
+      <div class="copyright-box">
+        <img src="chuky.jpg" alt="Chữ ký tác giả Đặng Hồng Anh Khoa" class="signature-img">
+        <div class="copyright-text">
+          <span>Bản quyền &copy; 2026</span>
+          <strong>Đặng Hồng Anh Khoa</strong>
         </div>
       </div>
 
@@ -591,7 +568,6 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   
-  // DANH SÁCH 6 TÀI KHOẢN VÀ TÊN HIỂN THỊ
   const ACCOUNTS = {
     'danghonganhkhoa': 'Đặng Hồng Anh Khoa',
     'todangkhoi': 'Tô Đăng Khôi',
@@ -607,22 +583,16 @@
   let isAdmin = false;
   let currentUser = "";
 
-  // ================= HÀM HIỂN THỊ POPUP =================
   window.hienThiThongBao = function(message, type = 'error') {
     const toast = document.getElementById('toast');
     const icon = document.getElementById('toast-icon');
     const msg = document.getElementById('toast-message');
-
     msg.innerText = message;
     toast.className = 'show ' + type; 
     icon.innerText = type === 'error' ? '❌' : '✅';
-
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
+    setTimeout(() => { toast.classList.remove('show'); }, 3000);
   };
 
-  // ================= LOGIC ĐĂNG NHẬP =================
   window.moDangNhap = function() {
     if(isAdmin) {
       document.getElementById('modal-xacnhan-dangxuat').hidden = false;
@@ -642,12 +612,9 @@
   };
 
   window.xacNhanDangXuat = function() {
-    isAdmin = false;
-    currentUser = "";
-    localStorage.removeItem(STORAGE_KEY); 
-    localStorage.removeItem(USER_KEY); 
-    capNhatGiaoDienAdmin(); 
-    taiBaiViet(); 
+    isAdmin = false; currentUser = "";
+    localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(USER_KEY); 
+    capNhatGiaoDienAdmin(); taiBaiViet(); 
     hienThiThongBao("Đã đăng xuất thành công!", "success");
     dongModalDangXuat(); 
   };
@@ -661,8 +628,8 @@
       document.getElementById('khungdang').hidden = false; 
     } else {
       navBtn.innerText = 'Đăng nhập';
-      navBtn.style.background = 'linear-gradient(135deg, var(--sen), var(--sen-dam))'; 
-      navBtn.style.boxShadow = '0 4px 14px rgba(217,102,138,0.3)';
+      navBtn.style.background = 'linear-gradient(135deg, var(--nuoc), var(--sau))'; 
+      navBtn.style.boxShadow = '0 4px 14px rgba(31,122,122,0.3)';
       document.getElementById('khungdang').hidden = true; 
     }
   }
@@ -675,12 +642,9 @@
     if (ACCOUNTS[tk] && mk === "123") {
       isAdmin = true;
       currentUser = ACCOUNTS[tk];
-      
       localStorage.setItem(STORAGE_KEY, 'true'); 
       localStorage.setItem(USER_KEY, currentUser); 
-      
-      dongDangNhap(); 
-      capNhatGiaoDienAdmin(); 
+      dongDangNhap(); capNhatGiaoDienAdmin(); 
       hienThiThongBao(`Xin chào ${currentUser}!`, "success");
       taiBaiViet(); 
     } else {
@@ -689,44 +653,31 @@
     return false;
   };
 
-  // ================= HÀM CHÈN ẢNH TỰ ĐỘNG NÉN =================
   window.chenAnh = function(input) {
     if (input.files && input.files[0]) {
       const file = input.files[0];
-      
       if (file.size > 10 * 1024 * 1024) {
         hienThiThongBao("Ảnh quá lớn! Vui lòng chọn ảnh dưới 10MB.", "error");
-        input.value = '';
-        return;
+        input.value = ''; return;
       }
-
       const reader = new FileReader();
       reader.onload = function (e) {
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
-          
           const MAX_WIDTH = 800; 
-          let width = img.width;
-          let height = img.height;
-
+          let width = img.width; let height = img.height;
           if (width > MAX_WIDTH) {
-            height = Math.round((height * MAX_WIDTH) / width);
-            width = MAX_WIDTH;
+            height = Math.round((height * MAX_WIDTH) / width); width = MAX_WIDTH;
           }
-
-          canvas.width = width;
-          canvas.height = height;
+          canvas.width = width; canvas.height = height;
           ctx.drawImage(img, 0, 0, width, height);
-
           const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
-          
           const imgHtml = `<img src="${dataUrl}" alt="Hình ảnh bài viết">`;
           const editor = document.getElementById('noidungbai');
           editor.focus();
           document.execCommand('insertHTML', false, imgHtml);
-          
           input.value = ''; 
         };
         img.src = e.target.result;
@@ -735,7 +686,6 @@
     }
   };
 
-  // ================= HÀM TẢI BÀI VIẾT =================
   async function taiBaiViet() {
     const dsbai = document.getElementById('dsbai');
     try {
@@ -744,7 +694,7 @@
       
       dsbai.innerHTML = '';
       if (querySnapshot.empty) {
-        dsbai.innerHTML = '<p style="color: var(--chu-nhat); font-style: italic;">Chưa có bài viết nào.</p>';
+        dsbai.innerHTML = '<p style="color: var(--chu-nhat); font-style: italic; text-align: center; padding: 40px;">Chưa có bài viết nào.</p>';
         return;
       }
 
@@ -752,7 +702,7 @@
         const data = docSnapshot.data();
         const ngay = data.thoiGian ? new Date(data.thoiGian.seconds * 1000).toLocaleDateString('vi-VN') : 'Vừa xong';
         const textThuan = data.noidung.replace(/<[^>]+>/g, ' '); 
-        const moTaNgan = textThuan.length > 150 ? textThuan.substring(0, 150) + '...' : textThuan;
+        const moTaNgan = textThuan.length > 180 ? textThuan.substring(0, 180) + '...' : textThuan;
         
         const nutXoa = isAdmin ? `<button class="btn-xoa" onclick="window.xoaBai('${docSnapshot.id}')">🗑️ Xóa</button>` : '';
 
@@ -760,60 +710,50 @@
         baiEl.className = 'bai';
         
         baiEl.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
-            <a href="baiviet.html?id=${docSnapshot.id}" style="text-decoration: none; color: inherit; display: block; flex: 1;">
-              <h3 style="color: var(--nuoc); transition: color 0.3s;">${data.tieude}</h3>
-              <div class="meta">Đăng bởi: ${data.tacGia || 'Ẩn danh'} | ${ngay}</div>
-              <div class="noidung">${moTaNgan}</div>
-              <p style="margin-top: 15px; color: var(--sen); font-weight: 600;">Đọc tiếp →</p>
-            </a>
-            <div>${nutXoa}</div>
-          </div>
+          ${nutXoa}
+          <a href="baiviet.html?id=${docSnapshot.id}" style="text-decoration: none; display: block; flex: 1;">
+            <h3>${data.tieude}</h3>
+            <div class="meta">
+              <span>✍️ ${data.tacGia || 'Ẩn danh'}</span>
+              <span>🕒 ${ngay}</span>
+            </div>
+            <div class="noidung">${moTaNgan}</div>
+            <div class="doc-tiep">Đọc tiếp <span>→</span></div>
+          </a>
         `;
         dsbai.appendChild(baiEl);
       });
     } catch (error) {
       console.error("Lỗi tải bài:", error);
-      dsbai.innerHTML = '<p style="color: red;">Không thể tải bài viết.</p>';
+      dsbai.innerHTML = '<p style="color: red; text-align: center;">Không thể tải bài viết.</p>';
     }
   }
 
   window.dangBai = async function(event) {
     event.preventDefault();
     if (!isAdmin) return;
-
     const tieude = document.getElementById('tieude').value;
     const noidung = document.getElementById('noidungbai').innerHTML; 
     
     if(noidung.trim() === '' || noidung === '<br>') {
-        hienThiThongBao("Vui lòng nhập nội dung bài viết!", "error");
-        return false;
+        hienThiThongBao("Vui lòng nhập nội dung bài viết!", "error"); return false;
     }
-
     const btn = document.querySelector('#khungdang button[type="submit"]');
-    btn.innerText = "Đang đăng...";
-    btn.disabled = true;
+    btn.innerText = "Đang đăng..."; btn.disabled = true;
 
     try {
       await addDoc(collection(db, "baiviet"), {
-        tieude: tieude,
-        noidung: noidung,
-        tacGia: currentUser, // LƯU TÊN TÁC GIẢ
-        thoiGian: serverTimestamp()
+        tieude: tieude, noidung: noidung, tacGia: currentUser, thoiGian: serverTimestamp()
       });
-      
       hienThiThongBao("Đăng bài thành công!", "success");
-      
       document.getElementById('tieude').value = '';
       document.getElementById('noidungbai').innerHTML = '';
       taiBaiViet(); 
-      
     } catch (error) {
       console.error("Lỗi:", error);
       hienThiThongBao("Lỗi khi đăng bài. Vui lòng thử lại!", "error");
     } finally {
-      btn.innerText = "Đăng bài lên Web ngay";
-      btn.disabled = false;
+      btn.innerText = "Đăng bài lên Web ngay"; btn.disabled = false;
     }
     return false;
   };
@@ -831,15 +771,11 @@
     }
   };
 
-  // ================= MODAL HÌNH ẢNH =================
   window.openModal = function(imgElement) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-    modal.style.display = 'block';
-    modalImg.src = imgElement.src;
+    document.getElementById('imageModal').style.display = 'block';
+    document.getElementById('modalImg').src = imgElement.src;
     document.body.style.overflow = 'hidden';
   }
-  
   window.closeModal = function() {
     document.getElementById('imageModal').style.display = 'none';
     document.body.style.overflow = '';
@@ -847,32 +783,20 @@
   document.getElementById('imageModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-
-  // ================= KHÔI PHỤC ANIMATION =================
   let currentAnimId = null;
   function smoothScrollTo(targetY, duration) {
     duration = duration || 1000;
     if (currentAnimId) { cancelAnimationFrame(currentAnimId); currentAnimId = null; }
-    const html = document.documentElement;
-    const body = document.body;
-    const oldBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = 'auto';
-
+    const html = document.documentElement; const body = document.body;
+    const oldBehavior = html.style.scrollBehavior; html.style.scrollBehavior = 'auto';
     const startY = window.scrollY || html.scrollTop || body.scrollTop || 0;
     const diff = targetY - startY;
     if (Math.abs(diff) < 2) { html.style.scrollBehavior = oldBehavior; return; }
-
     const startTime = performance.now();
     function step(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      const newY = startY + diff * eased;
-      html.scrollTop = newY;
-      body.scrollTop = newY;
-      window.scrollTo(0, newY);
+      const elapsed = now - startTime; const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      const newY = startY + diff * eased; html.scrollTop = newY; body.scrollTop = newY; window.scrollTo(0, newY);
       if (progress < 1) { currentAnimId = requestAnimationFrame(step); }
       else { html.style.scrollBehavior = oldBehavior; currentAnimId = null; }
     }
@@ -890,9 +814,7 @@
         document.getElementById('navLinks').classList.remove('active');
         document.getElementById('menuToggle').innerHTML = '☰';
       }
-      const headerOffset = 70;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 70;
       smoothScrollTo(offsetPosition, 1000);
     });
   });
@@ -900,59 +822,36 @@
   let currentHorizontalAnimId = null;
   function smoothScrollHorizontal(element, targetLeft, duration) {
     duration = duration || 1000;
-    if (currentHorizontalAnimId) {
-      cancelAnimationFrame(currentHorizontalAnimId);
-      currentHorizontalAnimId = null;
-    }
-    const oldSnapType = element.style.scrollSnapType;
-    const oldBehavior = element.style.scrollBehavior;
-    element.style.scrollSnapType = 'none';
-    element.style.scrollBehavior = 'auto';
-    const startLeft = element.scrollLeft;
-    const diff = targetLeft - startLeft;
-    if (Math.abs(diff) < 2) {
-      element.style.scrollSnapType = oldSnapType;
-      element.style.scrollBehavior = oldBehavior;
-      return;
-    }
+    if (currentHorizontalAnimId) { cancelAnimationFrame(currentHorizontalAnimId); currentHorizontalAnimId = null; }
+    const oldSnapType = element.style.scrollSnapType; const oldBehavior = element.style.scrollBehavior;
+    element.style.scrollSnapType = 'none'; element.style.scrollBehavior = 'auto';
+    const startLeft = element.scrollLeft; const diff = targetLeft - startLeft;
+    if (Math.abs(diff) < 2) { element.style.scrollSnapType = oldSnapType; element.style.scrollBehavior = oldBehavior; return; }
     const startTime = performance.now();
     function step(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      const elapsed = now - startTime; const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
       element.scrollLeft = startLeft + diff * eased;
-      if (progress < 1) {
-        currentHorizontalAnimId = requestAnimationFrame(step);
-      } else {
-        element.style.scrollSnapType = oldSnapType;
-        element.style.scrollBehavior = oldBehavior;
-        currentHorizontalAnimId = null;
-      }
+      if (progress < 1) { currentHorizontalAnimId = requestAnimationFrame(step); }
+      else { element.style.scrollSnapType = oldSnapType; element.style.scrollBehavior = oldBehavior; currentHorizontalAnimId = null; }
     }
     currentHorizontalAnimId = requestAnimationFrame(step);
   }
 
   function cancelHorizontalAnim() {
     if (currentHorizontalAnimId) {
-      cancelAnimationFrame(currentHorizontalAnimId);
-      currentHorizontalAnimId = null;
-      const el = document.getElementById('truot');
-      el.style.scrollSnapType = '';
-      el.style.scrollBehavior = '';
+      cancelAnimationFrame(currentHorizontalAnimId); currentHorizontalAnimId = null;
+      const el = document.getElementById('truot'); el.style.scrollSnapType = ''; el.style.scrollBehavior = '';
     }
   }
 
   const truot = document.getElementById('truot');
   const slides = document.querySelectorAll('.slide');
   const chamContainer = document.getElementById('cham');
-  let currentSlide = 0;
-  let autoPlayInterval;
+  let currentSlide = 0; let autoPlayInterval;
 
   slides.forEach(function (_, i) {
     const btn = document.createElement('button');
-    btn.setAttribute('aria-label', 'Chuyển đến ảnh ' + (i + 1));
     if (i === 0) btn.classList.add('chon');
     btn.onclick = function () { chuyenDen(i); resetAutoPlay(); };
     chamContainer.appendChild(btn);
@@ -962,10 +861,8 @@
   function chuyenDen(index) {
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
-    const targetLeft = truot.clientWidth * index;
-    smoothScrollHorizontal(truot, targetLeft, 1000);
-    currentSlide = index;
-    capNhatUI();
+    smoothScrollHorizontal(truot, truot.clientWidth * index, 1000);
+    currentSlide = index; capNhatUI();
   }
 
   window.lui = function(dir) { chuyenDen(currentSlide + dir); resetAutoPlay(); }
@@ -978,15 +875,10 @@
   truot.addEventListener('scroll', function () {
     if (currentHorizontalAnimId) return;
     const index = Math.round(truot.scrollLeft / truot.clientWidth);
-    if (index !== currentSlide && index >= 0 && index < slides.length) {
-      currentSlide = index;
-      capNhatUI();
-    }
+    if (index !== currentSlide && index >= 0 && index < slides.length) { currentSlide = index; capNhatUI(); }
   });
 
-  ['wheel', 'touchstart', 'pointerdown'].forEach(function (evt) {
-    truot.addEventListener(evt, cancelHorizontalAnim, { passive: true });
-  });
+  ['wheel', 'touchstart', 'pointerdown'].forEach(function (evt) { truot.addEventListener(evt, cancelHorizontalAnim, { passive: true }); });
 
   function startAutoPlay() { autoPlayInterval = setInterval(function () { chuyenDen(currentSlide + 1); }, 5000); }
   function resetAutoPlay() { clearInterval(autoPlayInterval); startAutoPlay(); }
@@ -994,42 +886,26 @@
   truot.addEventListener('mouseleave', startAutoPlay);
   startAutoPlay();
 
-  // Khởi tạo trạng thái
   const savedStatus = localStorage.getItem(STORAGE_KEY);
   const savedUser = localStorage.getItem(USER_KEY);
-  
-  if (savedStatus === 'true' && savedUser) {
-    isAdmin = true;
-    currentUser = savedUser;
-  }
-  capNhatGiaoDienAdmin(); 
-  taiBaiViet(); 
+  if (savedStatus === 'true' && savedUser) { isAdmin = true; currentUser = savedUser; }
+  capNhatGiaoDienAdmin(); taiBaiViet(); 
 
   document.getElementById('menuToggle').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('active');
   });
 
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-  revealElements.forEach(function (el) { revealObserver.observe(el); });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
 
   const backToTopBtn = document.getElementById('backToTop');
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 400) backToTopBtn.classList.add('show');
-    else backToTopBtn.classList.remove('show');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) backToTopBtn.classList.add('show'); else backToTopBtn.classList.remove('show');
   });
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', function () { 
-      smoothScrollTo(0, 1000); 
-    });
-  }
+  backToTopBtn.addEventListener('click', () => smoothScrollTo(0, 1000));
 </script>
 </body>
 </html>
