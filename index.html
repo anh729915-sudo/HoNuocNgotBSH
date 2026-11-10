@@ -135,7 +135,48 @@
   main h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 64px; height: 3px; background: linear-gradient(90deg, var(--sen), var(--vang-sang)); border-radius: 3px; }
   main p { max-width: 70ch; margin-bottom: 16px; color: var(--chu); }
   main p:last-child { margin-bottom: 0; }
-  #noidung p { font-size: 1.05rem; }
+  
+  /* CSS CHO PHẦN GIỚI THIỆU MỚI */
+  .gioithieu-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .gioithieu-text p {
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    color: var(--chu);
+    line-height: 1.8;
+    text-align: justify;
+  }
+  .gioithieu-img {
+    position: relative;
+    border-radius: var(--bo-goc);
+    overflow: hidden;
+    box-shadow: var(--bong-vua);
+    transform: rotate(2deg);
+    transition: transform 0.4s ease;
+  }
+  .gioithieu-img:hover {
+    transform: rotate(0deg) scale(1.02);
+  }
+  .gioithieu-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4/3;
+  }
+  .gioithieu-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 6px solid var(--trang);
+    border-radius: var(--bo-goc);
+    pointer-events: none;
+  }
 
   .thongso { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0 12px; }
   .thongso div {
@@ -291,7 +332,7 @@
   .modal-box input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1.5px solid #e0e6e4; border-radius: 8px; outline: none; font-family: inherit; background: var(--suong);}
   .modal-box input:focus { background: #fff; border-color: var(--nuoc); box-shadow: 0 0 0 4px rgba(31,122,122,0.1);}
 
-  @media (max-width: 900px) { .tacgia-wrapper { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .tacgia-wrapper { grid-template-columns: 1fr; } .gioithieu-layout { grid-template-columns: 1fr; } }
   @media (max-width: 768px) {
     .menu-toggle { display: block; }
     .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-bottom: 1px solid var(--vien); gap: 8px; }
@@ -320,6 +361,7 @@
     .copyright-box { padding: 30px 20px; }
     #toast { width: 90%; min-width: auto; }
     .modal-box { padding: 30px 20px; width: 90%; }
+    .gioithieu-img { transform: rotate(0deg); margin-top: 20px; }
   }
 </style>
 </head>
@@ -392,12 +434,23 @@
 </header>
 
 <main>
+  <!-- PHẦN GIỚI THIỆU ĐÃ ĐƯỢC MỞ RỘNG -->
   <section id="noidung" class="reveal">
     <div class="khung">
       <h2>Giới thiệu hồ</h2>
-      <p>Hồ Nước Ngọt nằm ngay trung tâm thành phố Sóc Trăng, tại số 2 đường Hùng Vương. Hồ có diện tích khoảng 20 héc-ta và gồm hai phần: hồ lớn và hồ nhỏ.</p>
-      <p>Hồ nhỏ còn gọi là hồ Tịnh Tâm, được xây dựng từ đầu thập niên 1960 dưới thời Tỉnh trưởng Hoàng Mạnh Thường. Về sau, khi nhu cầu dùng nước ngọt tăng lên, người dân Sóc Trăng đào thủ công thêm hồ lớn vào năm 1982.</p>
-      <p>Ngày nay, hồ là không gian xanh quen thuộc, được nhiều người gọi là lá phổi của thành phố.</p>
+      
+      <div class="gioithieu-layout">
+        <div class="gioithieu-text">
+          <p>Hồ Nước Ngọt nằm ngay trung tâm thành phố Sóc Trăng, tại số 2 đường Hùng Vương. Hồ có diện tích khoảng 20 héc-ta và gồm hai phần: hồ lớn và hồ nhỏ.</p>
+          <p>Hồ nhỏ còn gọi là hồ Tịnh Tâm, được xây dựng từ đầu thập niên 1960 dưới thời Tỉnh trưởng Hoàng Mạnh Thường. Về sau, khi nhu cầu dùng nước ngọt tăng lên, người dân Sóc Trăng đào thủ công thêm hồ lớn vào năm 1982.</p>
+          <p>Không chỉ là nơi trữ nước, hồ còn được quy hoạch thành một công viên sinh thái tuyệt đẹp. Lòng hồ được trang trí bằng những cụm hoa sen hồng rực rỡ và tượng rồng vàng uốn lượn uy nghi. Những cây cầu sơn màu vàng nổi bật bắc qua mặt nước xanh trong, tạo nên khung cảnh vô cùng thơ mộng và thu hút du khách.</p>
+          <p>Vào mỗi buổi sáng sớm hay chiều muộn, không gian nơi đây lại nhộn nhịp bởi tiếng cười nói của người dân đi bộ, tập thể dục và ngắm cảnh. Có thể nói, hồ Nước Ngọt chính là "lá phổi xanh" điều hòa không khí, đồng thời là niềm tự hào của người dân thành phố Sóc Trăng.</p>
+        </div>
+        <div class="gioithieu-img">
+          <img src="anh2.jpg" alt="Cầu vàng bắc qua hồ Nước Ngọt">
+        </div>
+      </div>
+
       <div class="thongso">
         <div class="reveal delay-1"><strong>~20 ha</strong><span>Diện tích mặt nước</span></div>
         <div class="reveal delay-2"><strong>2 hồ</strong><span>Hồ lớn &amp; hồ Tịnh Tâm</span></div>
@@ -468,7 +521,6 @@
       <div class="gach-chan"></div>
       <p class="mota-lienhe">Hãy gửi thông tin liên hệ cho chúng tôi</p>
       
-      <!-- FORM ĐÃ ĐƯỢC CẬP NHẬT LÊN WEB3FORMS -->
       <form class="form-lienhe" id="formLienHe" onsubmit="return guiLienHe(event)">
         <input type="hidden" name="subject" value="Có liên hệ mới từ trang web Hồ Nước Ngọt!">
         <input type="hidden" name="from_name" value="Web Hồ Nước Ngọt">
@@ -568,7 +620,6 @@
   const STORAGE_KEY = "honuocngot_admin_status"; 
   const USER_KEY = "honuocngot_username";
   
-  // ĐÃ CẬP NHẬT ACCESS KEY CỦA BẠN
   const WEB3FORMS_KEY = "ca08ffd2-5b41-49ae-bbc8-1baf1c8e2d5f"; 
 
   let isAdmin = false;
